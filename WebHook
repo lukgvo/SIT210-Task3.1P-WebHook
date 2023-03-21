@@ -1,0 +1,47 @@
+int led = D7; 
+int temp;
+int value = 0;
+TCPClient client;
+
+
+
+
+unsigned long myChannelNumber = 2073589;
+const char * myWriteAPIKey = "SO2NQEIAL3PY5U9K";
+
+void setup() {
+    
+  
+  Particle.variable("value", value);
+  Particle.variable("temp_c", temp);
+  pinMode(led, OUTPUT);
+  
+  
+  pinMode(D3, INPUT);
+  
+  
+}
+
+void loop() {
+    
+  digitalWrite(led, HIGH);  
+  
+  
+
+  temp = analogRead(D3);
+  
+  
+  
+  
+  Particle.publish("temp", String(temp), PRIVATE);
+  
+  delay(5000);            
+
+  digitalWrite(led, LOW);   
+  delay(5000);               
+
+
+}
+
+
+
